@@ -11,7 +11,7 @@ var spendingSchema = new mongoose.Schema({
 
 var Spending = mongoose.model('Spending', spendingSchema)
 
-app.get('/', function(request, response) {
+app.get('/helloWorld', function(request, response) {
     response.send('Hello World!')
 })
 
