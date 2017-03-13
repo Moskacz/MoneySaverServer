@@ -40,6 +40,36 @@ app.put('/transaction', function(request, response){
     }
 })
 
+app.get('/transactions', function(request, response){
+    Transaction.find(function(error, transactions) {
+        if (error) {
+            response.status(500)
+            response.send("error")
+        } else {
+            response.status(200)
+            response.json(transactions)
+        }
+    })
+})
+
+app.get('/transaction/:id', function(request, response){
+    var transactionId = request.param.id;
+    if (typeof transactionId !== 'undefined') {
+        Transaction.findById(transactionId, function(error, transaction){
+            if (err) {
+                response.status(500)
+                response.send("error")
+            } else {
+                response.status(200)
+                response.json(transaction)
+            }
+        })
+    } else {
+        response.status(400)
+        response.send("invalid identifier")
+    }
+})
+
 app.listen(3000, function() {
     console.log('App is listening on port 3000')
 })
