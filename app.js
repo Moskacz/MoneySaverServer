@@ -21,9 +21,23 @@ app.put('/transaction', function(request, response){
     var title = request.body.title
     var value = request.body.value
     var category = request.body.category
-    console.log(request.body)
-    console.log(request.headers)
-    response.send('a')
+    
+    if (typeof title !== 'undefined' && typeof value !== 'undefined' && typeof category !== 'undefined') {
+        var transaction = new Transaction(request.body)
+        transaction.save(function(err){
+           if (err) {
+                request.status(500)
+                request.send("error")
+                console.log(err)
+           } else {
+                response.status(200)
+                response.send("OK")
+           }
+        })
+    } else {
+        response.status(500)
+        response.send("invalid json")
+    }
 })
 
 app.listen(3000, function() {
