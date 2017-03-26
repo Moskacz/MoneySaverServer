@@ -7,7 +7,10 @@ router.get('/', function(request, response, next){
         if (error) {
             next(error)
         } else {
-            response.json(transactions)
+            var dictionary = {
+                "transactions": transactions
+            }
+            response.json(dictionary)
         }
     })
 })
