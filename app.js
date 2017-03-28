@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 var transactionsRouting = require('./routes/transactions')
 app.use('/transactions', transactionsRouting)
-
+var categoriesRouting = require('./routes/categories')
+app.use('/categories', categoriesRouting)
 
 app.listen(3000, function() {
     console.log('App is listening on port 3000')

@@ -26,7 +26,6 @@ router.get('/:id', function(request, response, next){
 })
 
 router.post('/', function(request, response, next){
-    console.log(request.body)
     Transaction.create(request.body, function(error, transaction){
         if (error) {
             next(error)
