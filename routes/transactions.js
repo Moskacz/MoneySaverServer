@@ -55,4 +55,14 @@ router.delete('/:id', function(request, response, next){
     })
 })
 
+router.delete('/', function(request, response, next){
+    Transaction.remove({}, function(error){
+        if (error) {
+            next(error)
+        } else {
+            response.send('OK')
+        }
+    })
+})
+
 module.exports = router
